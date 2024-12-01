@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         email = "vlku.milos.dev@gmail.com",
                         url = "https://www.linkedin.com/in/milos-vlku/")),
         servers = {
-                @Server(description = "Local ENV", url = "http://localhost:8080")}
+                @Server(description = "Local ENV", url = "http://localhost:8080/leanpay")}
 )
 public class OpenApiConfig {
 }
