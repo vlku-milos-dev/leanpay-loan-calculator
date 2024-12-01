@@ -12,7 +12,7 @@ public class InstallmentServiceUT {
     private final InstallmentService installmentService = new InstallmentService();
 
     @Test
-    void createLoanInstallments_ShouldCreateInstallmentPlan() {
+    void calculateInstallments_ShouldCreateInstallmentPlan() {
         // Arrange
         int numberOfMonths = 10;
         Installment expectedInstallment = Installment.builder()
