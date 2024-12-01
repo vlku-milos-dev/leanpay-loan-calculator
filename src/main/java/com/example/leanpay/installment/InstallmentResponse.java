@@ -10,6 +10,5 @@ public record InstallmentResponse(
         BigDecimal paymentAmount,
         BigDecimal principalAmount,
         BigDecimal interestAmount,
-        BigDecimal balanceOwned
-) {
+        BigDecimal balanceOwned) {
 }

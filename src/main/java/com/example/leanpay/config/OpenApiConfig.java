@@ -10,19 +10,12 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 description = "Loan Calculator API Documentation",
                 title = "Loan Calculator API",
                 version = "1.0",
-
                 contact = @Contact(
                         name = "Milos Vlku",
                         email = "vlku.milos.dev@gmail.com",
-                        url = "https://www.linkedin.com/in/milos-vlku/"
-                )
-        ),
+                        url = "https://www.linkedin.com/in/milos-vlku/")),
         servers = {
-                @Server(
-                        description = "Local ENV",
-                        url = "http://localhost:8080"
-                )
-        }
+                @Server(description = "Local ENV", url = "http://localhost:8080")}
 )
 public class OpenApiConfig {
 }

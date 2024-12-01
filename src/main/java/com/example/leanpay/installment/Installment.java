@@ -1,8 +1,7 @@
 package com.example.leanpay.installment;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.example.leanpay.loan.Loan;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -14,12 +13,18 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
+@EqualsAndHashCode
 @Entity
 public class Installment {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    private long loanId;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "loan_id")
+    private Loan loan;
     private int monthNumber;
     private BigDecimal paymentAmount;
     private BigDecimal principalAmount;

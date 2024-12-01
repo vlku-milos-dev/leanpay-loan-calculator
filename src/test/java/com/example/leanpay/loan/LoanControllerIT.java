@@ -20,7 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class LoanControllerTest {
+class LoanControllerIT {
 
     @Container
     @ServiceConnection
@@ -66,7 +66,8 @@ class LoanControllerTest {
                 "/api/v1/loans",
                 HttpMethod.POST,
                 new HttpEntity<>(request),
-                new ParameterizedTypeReference<>() {});
+                new ParameterizedTypeReference<>() {
+                });
 
         // Assert
         assertThat(response.getStatusCode().equals(HttpStatus.BAD_REQUEST)).isTrue();

@@ -4,8 +4,5 @@ import com.example.leanpay.installment.InstallmentResponse;
 
 import java.util.List;
 
-
-public record LoanResponse(
-        List<InstallmentResponse> installments
-) {
+public record LoanResponse(List<InstallmentResponse> installments) {
 }

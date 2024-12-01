@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/loans")
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 class LoanController {
 
     private final LoanService loanService;
+    private final LoanMapper loanMapper;
 
     @Operation(
             summary = "Create Loan",
@@ -26,11 +26,16 @@ class LoanController {
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200"),
                     @ApiResponse(description = "Bad Request", responseCode = "400")
-            }
-    )
+            })
     @PostMapping
     public ResponseEntity<LoanResponse> createLoan(@Valid @RequestBody LoanRequest request) {
-        return ResponseEntity.ok(loanService.createLoan(request));
-    }
 
+        Loan loan = loanService.createLoan(
+                request.amount(),
+                request.annualInterestPercentage(),
+                request.numberOfMonths()
+        );
+
+        return ResponseEntity.ok(loanMapper.entityToResponse(loan));
+    }
 }
