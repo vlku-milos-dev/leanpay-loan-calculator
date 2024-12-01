@@ -1,0 +1,16 @@
+START TRANSACTION;
+
+ALTER TABLE installment
+    DROP CONSTRAINT installment_loan_id_fkey;
+
+ALTER TABLE loan
+    ALTER COLUMN id SET DATA TYPE BIGINT;
+
+ALTER TABLE installment
+    ALTER COLUMN id SET DATA TYPE BIGINT,
+    ALTER COLUMN loan_id SET DATA TYPE BIGINT;
+
+ALTER TABLE installment
+    ADD CONSTRAINT installment_loan_id_fkey FOREIGN KEY (loan_id) REFERENCES loan (id);
+
+COMMIT;
