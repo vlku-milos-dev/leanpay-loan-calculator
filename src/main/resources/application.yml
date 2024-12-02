@@ -1,14 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/loan-calculator
-    username: example
+    url: jdbc:mysql://localhost:3306/loan-calculator?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
     password: example
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: validate
-    database: postgresql
-#    show-sql: true
+    database: mysql
 
 server:
   servlet:

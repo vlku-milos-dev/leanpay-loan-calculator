@@ -49,7 +49,7 @@ To build and run the application locally, you will need the following:
 Steps to build and run the application:
 1. Clone the repository
 2. Navigate to the project directory
-3. Run `docker compose up -d` to start the Postgresql database
+3. Run `docker compose up -d` to start the MySQL database
 4. Run `./gradlew clean build` to build the application
 5. Run `./gradlew bootRun` to run the application
 
