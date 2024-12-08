@@ -30,6 +30,9 @@ public class LoanService {
         List<Installment> installments = installmentService.calculateInstallments(
                 amount, annualInterestPercentage, numberOfMonths);
 
+        // Reset installment IDs to avoid detached entities bug.
+        installments.forEach(installment -> installment.setId(0L));
+
         Loan loan = Loan.builder()
                 .amount(amount)
                 .annualInterestPercentage(annualInterestPercentage)
