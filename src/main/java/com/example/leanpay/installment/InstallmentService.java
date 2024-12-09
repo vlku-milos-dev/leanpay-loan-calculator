@@ -1,6 +1,7 @@
 package com.example.leanpay.installment;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,8 +21,11 @@ public class InstallmentService {
      * @param numberOfMonths The loan term in months
      * @return List of calculated installments for the entire loan term
      */
+    @Cacheable(value = "installmentCalculations", key = "#amount + '_' + #annualInterestRate + '_' + #numberOfMonths")
     public List<Installment> calculateInstallments(
             BigDecimal amount, BigDecimal annualInterestRate, Integer numberOfMonths) {
+        // This will be printed only once per particular combination of amount, annualInterestRate, and numberOfMonths
+        System.out.println("Calculate installments called!");
 
         BigDecimal monthlyInterestRate = calculateMonthlyInterestRate(annualInterestRate);
         BigDecimal monthlyPayment =
