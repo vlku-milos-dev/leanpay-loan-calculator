@@ -16,6 +16,17 @@ public class LoanService {
     private final LoanRepository loanRepository;
     private final InstallmentService installmentService;
 
+
+    @Transactional
+    public Loan createLoan(BigDecimal amount, BigDecimal annualInterestPercentage, Integer numberOfMonths) {
+        Loan loan = loanRepository.findLoanByAmountAndAnnualInterestPercentageAndNumberOfMonths(
+                amount, annualInterestPercentage, numberOfMonths)
+                .orElseGet(() -> createNewLoan(amount, annualInterestPercentage, numberOfMonths));
+
+        return loan;
+    }
+
+
     /**
      * Creates a new loan with calculated installments.
      *
@@ -24,11 +35,12 @@ public class LoanService {
      * @param numberOfMonths The loan term in months
      * @return The created and persisted Loan entity
      */
-    @Transactional
-    public Loan createLoan(BigDecimal amount, BigDecimal annualInterestPercentage, Integer numberOfMonths) {
+    public Loan createNewLoan(BigDecimal amount, BigDecimal annualInterestPercentage, Integer numberOfMonths) {
 
         List<Installment> installments = installmentService.calculateInstallments(
                 amount, annualInterestPercentage, numberOfMonths);
+
+        System.out.println("Creating new loan called!");
 
         Loan loan = Loan.builder()
                 .amount(amount)
